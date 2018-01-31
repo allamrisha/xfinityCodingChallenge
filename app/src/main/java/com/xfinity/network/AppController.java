@@ -13,7 +13,7 @@ import com.xfinity.util.ConnectivityReceiver;
  */
 
 public class AppController extends Application {
-    public static final String TAG=AppController.class.getSimpleName();
+    public static final String TAG = AppController.class.getSimpleName();
 
     private RequestQueue mRequestQueue;
     private static AppController mInstance;
@@ -21,11 +21,11 @@ public class AppController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mInstance=this;
+        mInstance = this;
     }
     public RequestQueue getRequestQueue() {
-        if(mRequestQueue==null)
-            mRequestQueue= Volley.newRequestQueue(getApplicationContext());
+        if(mRequestQueue == null)
+            mRequestQueue =  Volley.newRequestQueue(getApplicationContext());
         return mRequestQueue;
     }
     public static AppController getInstance() {
@@ -40,12 +40,12 @@ public class AppController extends Application {
         getRequestQueue().add(request);
     }
     public void cancelPendingRequests(Object tag){
-        if(mRequestQueue!=null)
+        if(mRequestQueue != null)
             mRequestQueue.cancelAll(tag);
     }
 
     //set the connectivity listener
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
-        ConnectivityReceiver.connectivityReceiverListener = listener;
+        ConnectivityReceiver.connectivityReceiverListener  =  listener;
     }
 }

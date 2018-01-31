@@ -6,6 +6,6 @@
     <dimen name="dimen_grid_linear_layout">160dp</dimen>
     <dimen name="dimen_grid_image_view">100dp</dimen>
 
-    <dimen name="fifty">50dp</dimen>
-    <dimen name="ten">10dp</dimen>
+    <dimen name="dimen_fifty">50dp</dimen>
+    <dimen name="dimen_ten">10dp</dimen>
 </resources>

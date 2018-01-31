@@ -21,7 +21,7 @@ import static com.xfinity.util.Constants.GRID_ITEM;
 import static com.xfinity.util.Constants.LIST_ITEM;
 
 /**
- * Created by rashmi on 1/30/2018.
+ * Created by risha on 1/30/2018.
  */
 public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.CustomViewHolder>{
 
@@ -47,7 +47,6 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
         public ImageView mImageView;
         public CustomViewHolder(View itemView) {
             super(itemView);
-            //titleView = itemView.findViewById(R.id.text_title);
             titleView  = itemView.findViewById(R.id.text_title);
             mImageView = itemView.findViewById(R.id.image_simpsons_list);
             itemView.setOnClickListener(new View.OnClickListener() {

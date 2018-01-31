@@ -18,15 +18,15 @@ import static com.xfinity.util.Constants.LIST_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity  implements TopicsListAdapter.TopicsClickListener{
 
-    private static final String TAG=MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(findViewById(R.id.container)!=null){
-            mFragmentManager=getSupportFragmentManager();
+        if(findViewById(R.id.container)!= null){
+            mFragmentManager = getSupportFragmentManager();
             mFragmentManager.beginTransaction()
                     .replace(R.id.container,new TopicsListFragment(),LIST_FRAGMENT)
                     .commit();
@@ -35,20 +35,20 @@ public class MainActivity extends AppCompatActivity  implements TopicsListAdapte
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.main,menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_item,menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        int id=item.getItemId();
+        int id = item.getItemId();
         switch (id){
             case R.id.toggle_view:
-                TopicsListFragment topicsListFragment=((TopicsListFragment)mFragmentManager.findFragmentByTag(LIST_FRAGMENT));
-                //boolean isSwitched= mTopicsListAdapter.toggleItemViewType();
-                boolean isSwitched= topicsListFragment.getListAdapter().toggleItemViewType();
+                TopicsListFragment topicsListFragment = ((TopicsListFragment)mFragmentManager.findFragmentByTag(LIST_FRAGMENT));
+                //boolean isSwitched =  mTopicsListAdapter.toggleItemViewType();
+                boolean isSwitched =  topicsListFragment.getListAdapter().toggleItemViewType();
                 //mRecyclerView.setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
                 topicsListFragment.getRecyclerView().setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
                 //mRecyclerView.setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity  implements TopicsListAdapte
     @Override
     public void onTopicItemListener(String title, String description, String image) {
 
-        DetailsFragment detailsFragment=(DetailsFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
-        if(detailsFragment!=null){
+        DetailsFragment detailsFragment = (DetailsFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
+        if(detailsFragment != null){
             detailsFragment.updateDetails(title,description,image);
         }else {
-            DetailsFragment dynamicDetailsFragment=new DetailsFragment();
-            Bundle bundle=new Bundle();
+            DetailsFragment dynamicDetailsFragment = new DetailsFragment();
+            Bundle bundle = new Bundle();
             bundle.putString("title",title);
             bundle.putString("description",description);
             bundle.putString("image_url",image);

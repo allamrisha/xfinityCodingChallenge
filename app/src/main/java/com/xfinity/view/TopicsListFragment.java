@@ -30,14 +30,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.xfinity.util.Constants.SIMPSONS_URL;
+import static com.xfinity.util.Constants.SIMPSONS_VERSION_NAME;
 import static com.xfinity.util.Constants.WIRE_URL;
+import static com.xfinity.util.Constants.WIRE_VERSION_NAME;
 
 /**
  * Created by rashmi on 1/30/2018.
  */
 
 public class TopicsListFragment extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener {
-    private static final String TAG=TopicsListFragment.class.getSimpleName();
+    private static final String TAG = TopicsListFragment.class.getSimpleName();
     private RecyclerView mRecyclerView;
 
     private TopicsListAdapter mListAdapter;
@@ -54,15 +56,16 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRelatedTopicsItemList=new ArrayList<>();
+        mRelatedTopicsItemList = new ArrayList<>();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.list_fragment,container,false);
-        mRecyclerView=view.findViewById(R.id.recycler_view);
+        view = inflater.inflate(R.layout.list_fragment,container,false);
+        mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return view;
     }
 
@@ -71,12 +74,16 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
         super.onViewCreated(view, savedInstanceState);
 
         if(BuildConfig.FLAVOR.equals("simpsons_flavor")) {
-            loadSimpsonsData();
+            ((MainActivity) getActivity()).setActionBarTitle(SIMPSONS_VERSION_NAME);
+                loadData(SIMPSONS_URL);
+            //loadSimpsonsData(S);
         }
         else if(BuildConfig.FLAVOR.equals("wire_flavor")) {
-            loadWireData();
+            ((MainActivity) getActivity()).setActionBarTitle(WIRE_VERSION_NAME);
+            loadData(WIRE_URL);
+           // loadWireData();
         }
-        if(AppController.getInstance()!=null)
+        if(AppController.getInstance()!= null)
             AppController.getInstance().addToRequestQueue(totalResponse);
     }
 
@@ -84,7 +91,6 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     @Override
     public void onResume() {
         super.onResume();
-        // register connection status listener
         AppController.getInstance().setConnectivityListener(this);
     }
 
@@ -103,9 +109,9 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     }
 
     private void showToast(boolean isConnected) {
-        String message="";
+        String message = "";
         if (!isConnected){
-            message = "Sorry! Not connected to internet";
+            message  =  "Sorry! Not connected to internet";
             Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
         }
     }
@@ -115,15 +121,14 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
         showToast(isConnected);
     }
 
-    private void loadSimpsonsData() {
+    /*private void loadWireData() {
         // Checking if internet connection exists or not
         checkConnection();
-        totalResponse =new JsonObjectRequest(SIMPSONS_URL, null, new Response.Listener<JSONObject>() {
+        totalResponse = new JsonObjectRequest(WIRE_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-               // Log.d(TAG,response.toString());
                 try {
-                   loadDataUsingVolley(response);
+                    parseJSON(response);
                 }
                 catch (Exception e) {
                     System.out.print(e);
@@ -136,14 +141,16 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
             }
         });
     }
-    private void loadWireData() {
+*/
+    private void loadData(String url) {
         // Checking if internet connection exists or not
         checkConnection();
-        totalResponse =new JsonObjectRequest(WIRE_URL, null, new Response.Listener<JSONObject>() {
+        totalResponse = new JsonObjectRequest(url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                // Log.d(TAG,response.toString());
                 try {
-                    loadDataUsingVolley(response);
+                    parseJSON(response);
                 }
                 catch (Exception e) {
                     System.out.print(e);
@@ -157,20 +164,21 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
         });
     }
 
-    private void loadDataUsingVolley(JSONObject response) throws JSONException {
-        JSONArray relatedTopics=response.getJSONArray("RelatedTopics");
-        for(int i=0;i<relatedTopics.length();i++){
-            JSONObject item=relatedTopics.getJSONObject(i);
-            JSONObject icon2=item.getJSONObject("Icon");
-            String url=icon2.getString("URL");
-            Icon icon=new Icon(url);
-            String text=item.getString("Text");
-            RelatedTopicsItem relatedTopicsItem=new RelatedTopicsItem(text,icon);
+    private void parseJSON(JSONObject response) throws JSONException {
+        JSONArray relatedTopics = response.getJSONArray("RelatedTopics");
+        for(int i = 0;i<relatedTopics.length();i++){
+            JSONObject item = relatedTopics.getJSONObject(i);
+            JSONObject icon2 = item.getJSONObject("Icon");
+            String url = icon2.getString("URL");
+            Icon icon = new Icon(url);
+            String text = item.getString("Text");
+            RelatedTopicsItem relatedTopicsItem = new RelatedTopicsItem(text,icon);
             mRelatedTopicsItemList.add(relatedTopicsItem);
         }
-        mListAdapter =new TopicsListAdapter(getActivity(),mRelatedTopicsItemList);
+        mListAdapter = new TopicsListAdapter(getActivity(),mRelatedTopicsItemList);
         Log.d(TAG+" -list",mRelatedTopicsItemList.toString());
         mRecyclerView.setAdapter(mListAdapter);
         mListAdapter.notifyDataSetChanged();
     }
+
 }

@@ -29,10 +29,10 @@ public class DetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.detail_fragment,container,false);
-        titleView=view.findViewById(R.id.details_title);
-        descriptionView=view.findViewById(R.id.details_description);
-        imageView=view.findViewById(R.id.details_image);
+        View view = inflater.inflate(R.layout.detail_fragment,container,false);
+        titleView = view.findViewById(R.id.details_title);
+        descriptionView = view.findViewById(R.id.details_description);
+        imageView = view.findViewById(R.id.details_image);
         return view;
     }
     @Override
@@ -42,25 +42,24 @@ public class DetailsFragment extends Fragment {
     }
 
     private void loadDetailsInFragment() {
-        Bundle args=getArguments();
-        if(args==null){
+        Bundle args = getArguments();
+        if(args == null){
             titleView.setText(DEFAULT_TITLE);
             descriptionView.setText(DEFAULT_DESC);
         }
         else {
-            //set Title for ActionBar
+            //set title for ActionBar
             ((MainActivity) getActivity()).setActionBarTitle(args.get("title").toString());
 
-           /* String title=args.get("title").toString();
-            String description=args.get("description").toString();
-            String url_image=args.get("image_url").toString();
+           /* String title = args.get("title").toString();
+            String description = args.get("description").toString();
+            String url_image = args.get("image_url").toString();*/
 
-            Title titleObj=new Title(title,description,url_image);*/
-            String url_image=args.get("image_url").toString();
+            String url_image = args.get("image_url").toString();
 
             titleView.setText(args.get("title").toString());
             descriptionView.setText(args.get("description").toString());
-            if(url_image!=null && !url_image.isEmpty() ){
+            if(url_image!= null && !url_image.isEmpty() ){
                 Picasso.with(getContext())
                         .load(url_image)
                         .into(imageView);
@@ -75,7 +74,7 @@ public class DetailsFragment extends Fragment {
     public void updateDetails(String mtitle, String mdescription, String image) {
         this.titleView.setText(mtitle);
         descriptionView.setText(mdescription);
-        if (image != null && !image.isEmpty()) {
+        if (!image.isEmpty() && image !=  null) {
             Picasso.with(getContext())
                     .load(image)
                     .into(imageView);

@@ -20,22 +20,22 @@ public class ConnectivityReceiver extends BroadcastReceiver {
     }
     @Override
     public void onReceive(Context context, Intent intent) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context
+        ConnectivityManager connectivityManager   =   (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        boolean isConnected = activeNetworkInfo != null
+        NetworkInfo activeNetworkInfo  =  connectivityManager.getActiveNetworkInfo();
+        boolean isConnected  =  activeNetworkInfo !=  null
                 && activeNetworkInfo.isConnectedOrConnecting();
 
-        if (connectivityReceiverListener != null) {
+        if (connectivityReceiverListener !=  null) {
             connectivityReceiverListener.onNetworkConnectionChanged(isConnected);
         }
     }
     public static boolean isConnected() {
         ConnectivityManager
-                connectivityManager = (ConnectivityManager) AppController.getInstance().getApplicationContext()
+                connectivityManager  =  (ConnectivityManager) AppController.getInstance().getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        return activeNetwork != null
+        NetworkInfo activeNetwork  =  connectivityManager.getActiveNetworkInfo();
+        return activeNetwork !=  null
                 && activeNetwork.isConnectedOrConnecting();
     }
 
