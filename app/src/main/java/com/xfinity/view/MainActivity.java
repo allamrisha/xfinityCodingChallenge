@@ -41,18 +41,25 @@ public class MainActivity extends AppCompatActivity  implements TopicsListAdapte
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id=item.getItemId();
         switch (id){
             case R.id.toggle_view:
-                TopicsListFragment topicsListFragment =((TopicsListFragment)mFragmentManager.findFragmentByTag(LIST_FRAGMENT));
+                TopicsListFragment topicsListFragment=((TopicsListFragment)mFragmentManager.findFragmentByTag(LIST_FRAGMENT));
                 //boolean isSwitched= mTopicsListAdapter.toggleItemViewType();
                 boolean isSwitched= topicsListFragment.getListAdapter().toggleItemViewType();
                 //mRecyclerView.setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
                 topicsListFragment.getRecyclerView().setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
                 //mRecyclerView.setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
                 topicsListFragment.getListAdapter().notifyDataSetChanged();
-                //mTopicsListAdapter.notifyDataSetChanged();
+                if (item.isChecked()) {
+                    item.setIcon(getResources().getDrawable(R.drawable.ic_off_toggle));
+                    item.setChecked(false);
+                }else{
+                    item.setIcon(getResources().getDrawable(R.drawable.ic_on_toggle));
+                    item.setChecked(true);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -76,8 +83,15 @@ public class MainActivity extends AppCompatActivity  implements TopicsListAdapte
                     .replace(R.id.container,dynamicDetailsFragment,DETAILS_FRAGMENT)
                     .addToBackStack(DETAILS_FRAGMENT)
                     .commit();
-
         }
+    }
 
+    /**
+     * Sets the title on the action bar to the custom title.
+     * This method is called in the details fragments to update the title.
+     * @param title is the title to be displayed on the action bar
+     */
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
     }
 }

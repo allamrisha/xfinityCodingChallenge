@@ -1,6 +1,7 @@
 <resources>
 
     <string name="text_desc">description</string>
+    <string name="text_title">title</string>
     <string name="switch_view">switch</string>
     <string name="text_detail">title</string>
 </resources>

@@ -1,10 +1,13 @@
 package com.xfinity.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +27,7 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
 
     private List<RelatedTopicsItem> mRelatedTopicsItemList;
     private Context mContext;
-    private boolean isSwitchView = true;
+    private boolean isSwitchView  =  true;
     private String title,description;
     private TopicsClickListener mTopicsClickListener;
 
@@ -34,26 +37,26 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
     }
 
     public TopicsListAdapter(Context context, List<RelatedTopicsItem> relatedTopicsItemList) {
-        mContext=context;
-        mRelatedTopicsItemList = relatedTopicsItemList;
-        mTopicsClickListener=(TopicsClickListener)context;
+        mContext = context;
+        mRelatedTopicsItemList  =  relatedTopicsItemList;
+        mTopicsClickListener = (TopicsClickListener)context;
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        public TextView titleView,descriptionView;
+        public TextView titleView;
         public ImageView mImageView;
         public CustomViewHolder(View itemView) {
             super(itemView);
-            //titleView=itemView.findViewById(R.id.text_title);
-            descriptionView=itemView.findViewById(R.id.text_description);
-            mImageView=itemView.findViewById(R.id.image_simpsons_list);
+            //titleView = itemView.findViewById(R.id.text_title);
+            titleView  = itemView.findViewById(R.id.text_title);
+            mImageView = itemView.findViewById(R.id.image_simpsons_list);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RelatedTopicsItem relatedTopicsItem=mRelatedTopicsItemList.get(getAdapterPosition());
-                    String[] titleText=relatedTopicsItem.getText().split("-");
-                    title=titleText[0];
-                    description=titleText[1];
+                    RelatedTopicsItem relatedTopicsItem = mRelatedTopicsItemList.get(getAdapterPosition());
+                    String[] titleText = relatedTopicsItem.getText().split("-");
+                    title = titleText[0];
+                    description = titleText[1];
                     mTopicsClickListener.onTopicItemListener(title,description,relatedTopicsItem.getIcon().getURL());
                 }
             });
@@ -63,13 +66,12 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        if(viewType==LIST_ITEM){
-            view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
+        if(viewType == LIST_ITEM){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
         }
         else {
-            view= LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item,parent,false);
         }
-        // View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.simpsons_list_item,parent,false);
         return new CustomViewHolder(view);
     }
 
@@ -81,19 +83,13 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
             return GRID_ITEM;
     }
 
-    public boolean toggleItemViewType () {
-        isSwitchView = !isSwitchView;
-        return isSwitchView;
-    }
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        RelatedTopicsItem relatedTopicsItem=mRelatedTopicsItemList.get(position);
-
+        RelatedTopicsItem relatedTopicsItem = mRelatedTopicsItemList.get(position);
         getTitleAndDescription(relatedTopicsItem);
-
-        holder.descriptionView.setText(title);
-        if(relatedTopicsItem.getIcon().getURL()==null || relatedTopicsItem.getIcon().getURL().isEmpty()){
+        holder.titleView.setText(title);
+        if(relatedTopicsItem.getIcon().getURL() == null || relatedTopicsItem.getIcon().getURL().isEmpty()){
             holder.mImageView.setImageResource(R.mipmap.ic_launcher);
         }else {
             Picasso.with(mContext)
@@ -102,10 +98,20 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
         }
     }
 
+    public boolean toggleItemViewType () {
+        isSwitchView  =  !isSwitchView;
+        return isSwitchView;
+    }
+
     private void getTitleAndDescription(RelatedTopicsItem relatedTopicsItem) {
-        String[] titleText=relatedTopicsItem.getText().split("-");
-        title=titleText[0];
-        description=titleText[1];
+        String[] titleText = relatedTopicsItem.getText().split("-");
+        title = titleText[0];
+        description = titleText[1];
+    }
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        @SuppressLint("ResourceType")
+        final Animation animAnticipateOvershoot  =  AnimationUtils.loadAnimation(mContext, R.transition.bounce);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
     }
 
     @Override

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/toggle_view"
         android:title="@string/switch_view"
-        android:icon="@drawable/ic_view_list_black_24dp"
+        android:icon="@drawable/ic_on_toggle"
+        android:checked="true"
         app:showAsAction="always"
         />
 </menu>

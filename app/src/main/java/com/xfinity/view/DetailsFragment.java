@@ -3,6 +3,7 @@ package com.xfinity.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,12 +48,26 @@ public class DetailsFragment extends Fragment {
             descriptionView.setText(DEFAULT_DESC);
         }
         else {
+            //set Title for ActionBar
+            ((MainActivity) getActivity()).setActionBarTitle(args.get("title").toString());
+
+           /* String title=args.get("title").toString();
+            String description=args.get("description").toString();
+            String url_image=args.get("image_url").toString();
+
+            Title titleObj=new Title(title,description,url_image);*/
+            String url_image=args.get("image_url").toString();
+
             titleView.setText(args.get("title").toString());
             descriptionView.setText(args.get("description").toString());
-            String url_image=args.get("image_url").toString();
-            if(url_image!=null || !url_image.isEmpty()){
+            if(url_image!=null && !url_image.isEmpty() ){
                 Picasso.with(getContext())
                         .load(url_image)
+                        .into(imageView);
+            }else{
+                Log.e("Detail","Display Holder Image");
+                Picasso.with(getContext())
+                        .load(R.mipmap.ic_launcher)
                         .into(imageView);
             }
         }
@@ -63,6 +78,11 @@ public class DetailsFragment extends Fragment {
         if (image != null && !image.isEmpty()) {
             Picasso.with(getContext())
                     .load(image)
+                    .into(imageView);
+        }else{
+            Log.e("Detail","Display Holder Image");
+            Picasso.with(getContext())
+                    .load(R.mipmap.ic_launcher)
                     .into(imageView);
         }
     }

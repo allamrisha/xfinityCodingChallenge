@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Text title theme. -->
+    <style name="TitletxtStyle" parent="@android:style/TextAppearance.Medium">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <!-- Text description theme. -->
+    <style name="DescriptiontxtStyle" parent="@android:style/TextAppearance.Medium">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">15sp</item>
+
+    </style>
 </resources>

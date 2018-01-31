@@ -41,7 +41,6 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     private RecyclerView mRecyclerView;
 
     private TopicsListAdapter mListAdapter;
-    //private RecyclerView.LayoutManager layoutManager;
     private JsonObjectRequest totalResponse;
     private List<RelatedTopicsItem> mRelatedTopicsItemList;
     private View view;
