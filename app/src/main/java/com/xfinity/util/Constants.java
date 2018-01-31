@@ -12,4 +12,6 @@ public class Constants {
     public static final int GRID_ITEM=1;
     public static final String LIST_FRAGMENT="LIST_FRAGMENT";
     public static final String DETAILS_FRAGMENT="DETAILS_FRAGMENT";
+    public static final String DEFAULT_TITLE="TEST_TITLE";
+    public static final String DEFAULT_DESC="TEST_DESC";
 }

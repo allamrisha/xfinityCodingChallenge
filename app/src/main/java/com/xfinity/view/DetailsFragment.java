@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.xfinity.R;
 
+import static com.xfinity.util.Constants.DEFAULT_DESC;
+import static com.xfinity.util.Constants.DEFAULT_TITLE;
+
 /**
  * Created by rashmi on 1/31/2018.
  */
@@ -31,7 +34,6 @@ public class DetailsFragment extends Fragment {
         imageView=view.findViewById(R.id.details_image);
         return view;
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -41,8 +43,8 @@ public class DetailsFragment extends Fragment {
     private void loadDetailsInFragment() {
         Bundle args=getArguments();
         if(args==null){
-            titleView.setText("TEST TITLE");
-            descriptionView.setText("TEST DESC");
+            titleView.setText(DEFAULT_TITLE);
+            descriptionView.setText(DEFAULT_DESC);
         }
         else {
             titleView.setText(args.get("title").toString());
@@ -53,7 +55,15 @@ public class DetailsFragment extends Fragment {
                         .load(url_image)
                         .into(imageView);
             }
-
+        }
+    }
+    public void updateDetails(String mtitle, String mdescription, String image) {
+        this.titleView.setText(mtitle);
+        descriptionView.setText(mdescription);
+        if (image != null && !image.isEmpty()) {
+            Picasso.with(getContext())
+                    .load(image)
+                    .into(imageView);
         }
     }
 }

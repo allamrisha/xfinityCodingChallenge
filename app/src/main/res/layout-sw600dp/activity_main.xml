@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_in_view"
+    android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal"
+    android:orientation="horizontal"
+    android:showDividers="middle">
+    <FrameLayout
+        android:id="@+id/container"
+        android:background="@color/colorAccent"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+    </FrameLayout>
+
+    <fragment
+        android:id="@+id/fragment_list"
+        class="com.xfinity.view.TopicsListFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/list_fragment" />
+    <fragment
+        android:id="@+id/fragment_detail"
+        class="com.xfinity.view.DetailsFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/detail_fragment" />
+
+</LinearLayout>
