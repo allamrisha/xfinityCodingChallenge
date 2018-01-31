@@ -20,9 +20,7 @@ import java.util.List;
 import static com.xfinity.util.Constants.GRID;
 import static com.xfinity.util.Constants.LIST;
 
-/**
- * Created by risha on 1/30/2018.
- */
+
 public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.CustomViewHolder>{
 
     private List<RelatedTopicsItem> mRelatedTopicsItemList;

@@ -1,9 +1,5 @@
 package com.xfinity.util;
 
-/**
- * Created by risha on 1/30/2018.
- */
-
 public class Constants {
     public static final String SIMPSONS_URL  = "http://api.duckduckgo.com/?q=simpsons+characters&format=json";
     public static final String WIRE_URL  = "http://api.duckduckgo.com/?q=the+wire+characters&format=json";

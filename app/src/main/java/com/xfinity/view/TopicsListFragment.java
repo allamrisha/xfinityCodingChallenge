@@ -35,10 +35,6 @@ import static com.xfinity.util.Constants.SIMPSONS_VERSION_NAME;
 import static com.xfinity.util.Constants.WIRE_URL;
 import static com.xfinity.util.Constants.WIRE_VERSION_NAME;
 
-/**
- * Created by risha on 1/30/2018.
- */
-
 public class TopicsListFragment extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener {
     private static final String TAG = TopicsListFragment.class.getSimpleName();
     private RecyclerView mRecyclerView;
@@ -46,7 +42,6 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     private TopicsListAdapter mListAdapter;
     private JsonObjectRequest totalResponse;
     private List<RelatedTopicsItem> mRelatedTopicsItemList;
-    private View view;
 
     public TopicsListAdapter getListAdapter(){
         return mListAdapter;
@@ -63,7 +58,7 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.list_fragment,container,false);
+        View view = inflater.inflate(R.layout.list_fragment,container,false);
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -93,11 +88,6 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     public void onResume() {
         super.onResume();
         AppController.getInstance().setConnectivityListener(this);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 
     /**
@@ -133,7 +123,7 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
                     parseJSON(response);
                 }
                 catch (Exception e) {
-                    System.out.print(e);
+
                 }
             }
         }, new Response.ErrorListener() {

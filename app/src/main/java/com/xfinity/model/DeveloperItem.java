@@ -21,7 +21,7 @@ public class DeveloperItem{
 		return name;
 	}
 
-	public void setType(String type){
+	/*public void setType(String type){
 		this.type = type;
 	}
 
@@ -36,7 +36,7 @@ public class DeveloperItem{
 	public String getUrl(){
 		return url;
 	}
-
+*/
 	@Override
  	public String toString(){
 		return 

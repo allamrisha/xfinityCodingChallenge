@@ -37,7 +37,7 @@ public class RelatedTopicsItem{
 		return icon;
 	}
 
-	public void setFirstURL(String firstURL){
+	/*public void setFirstURL(String firstURL){
 		this.firstURL = firstURL;
 	}
 
@@ -51,7 +51,7 @@ public class RelatedTopicsItem{
 
 	public String getResult(){
 		return result;
-	}
+	}*/
 
 	@Override
  	public String toString(){

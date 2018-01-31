@@ -6,6 +6,7 @@ public class Maintainer{
 
 	@SerializedName("github")
 	private String github;
+/*
 
 	public void setGithub(String github){
 		this.github = github;
@@ -14,6 +15,7 @@ public class Maintainer{
 	public String getGithub(){
 		return github;
 	}
+*/
 
 	@Override
  	public String toString(){

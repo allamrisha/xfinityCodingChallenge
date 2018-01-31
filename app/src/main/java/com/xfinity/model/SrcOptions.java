@@ -46,7 +46,7 @@ public class SrcOptions{
 	@SerializedName("skip_end")
 	private String skipEnd;
 
-	public void setSrcInfo(String srcInfo){
+	/*public void setSrcInfo(String srcInfo){
 		this.srcInfo = srcInfo;
 	}
 
@@ -157,7 +157,7 @@ public class SrcOptions{
 	public String getSkipEnd(){
 		return skipEnd;
 	}
-
+*/
 	@Override
  	public String toString(){
 		return 

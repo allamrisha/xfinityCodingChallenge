@@ -8,9 +8,6 @@ import android.net.NetworkInfo;
 
 import com.xfinity.network.AppController;
 
-/**
- * Created by risha on 1/30/2018.
- */
 
 public class ConnectivityReceiver extends BroadcastReceiver {
     public static ConnectivityReceiverListener connectivityReceiverListener;
@@ -22,7 +19,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         ConnectivityManager connectivityManager   =   (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo  =  connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetworkInfo  = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
         boolean isConnected  =  activeNetworkInfo !=  null
                 && activeNetworkInfo.isConnectedOrConnecting();
 
@@ -34,7 +31,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
         ConnectivityManager
                 connectivityManager  =  (ConnectivityManager) AppController.getInstance().getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork  =  connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetwork  = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
         return activeNetwork !=  null
                 && activeNetwork.isConnectedOrConnecting();
     }

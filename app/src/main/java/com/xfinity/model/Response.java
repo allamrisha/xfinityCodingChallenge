@@ -68,6 +68,7 @@ public class Response{
 
 	@SerializedName("AnswerType")
 	private String answerType;
+/*
 
 	public void setEntity(String entity){
 		this.entity = entity;
@@ -148,6 +149,7 @@ public class Response{
 	public String getAbstractText(){
 		return abstractText;
 	}
+*/
 
 	public void setImage(String image){
 		this.image = image;
@@ -157,7 +159,7 @@ public class Response{
 		return image;
 	}
 
-	public void setInfobox(String infobox){
+	/*public void setInfobox(String infobox){
 		this.infobox = infobox;
 	}
 
@@ -236,7 +238,7 @@ public class Response{
 	public String getAnswerType(){
 		return answerType;
 	}
-
+*/
 	@Override
  	public String toString(){
 		return 

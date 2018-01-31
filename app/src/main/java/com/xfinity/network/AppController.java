@@ -8,12 +8,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.xfinity.util.ConnectivityReceiver;
 
-/**
- * Created by risha on 1/30/2018.
- */
-
 public class AppController extends Application {
-    public static final String TAG = AppController.class.getSimpleName();
+    private static final String TAG = AppController.class.getSimpleName();
 
     private RequestQueue mRequestQueue;
     private static AppController mInstance;
@@ -23,7 +19,7 @@ public class AppController extends Application {
         super.onCreate();
         mInstance = this;
     }
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if(mRequestQueue == null)
             mRequestQueue =  Volley.newRequestQueue(getApplicationContext());
         return mRequestQueue;
@@ -43,7 +39,6 @@ public class AppController extends Application {
         if(mRequestQueue != null)
             mRequestQueue.cancelAll(tag);
     }
-
     //set the connectivity listener
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
         ConnectivityReceiver.connectivityReceiverListener  =  listener;

@@ -24,6 +24,7 @@ public class Icon{
 	public String getHeight(){
 		return height;
 	}
+/*
 
 	public void setWidth(String width){
 		this.width = width;
@@ -36,6 +37,7 @@ public class Icon{
 	public void setURL(String uRL){
 		this.uRL = uRL;
 	}
+*/
 
 	public String getURL(){
 		return uRL;

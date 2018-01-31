@@ -12,13 +12,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.xfinity.R;
+import com.xfinity.model.Topic;
 
 import static com.xfinity.util.Constants.DEFAULT_DESC;
 import static com.xfinity.util.Constants.DEFAULT_TITLE;
 
-/**
- * Created by risha on 1/31/2018.
- */
+
 
 public class DetailsFragment extends Fragment {
 
@@ -49,16 +48,12 @@ public class DetailsFragment extends Fragment {
         }
         else {
             //set title for ActionBar
-            ((MainActivity) getActivity()).setActionBarTitle(args.get("title").toString());
+            ((MainActivity) getActivity()).setActionBarTitle(args.get(Topic.TITLE).toString());
 
-           /* String title = args.get("title").toString();
-            String description = args.get("description").toString();
-            String url_image = args.get("image_url").toString();*/
+            String url_image = args.get(Topic.IMAGE_URL).toString();
 
-            String url_image = args.get("image_url").toString();
-
-            titleView.setText(args.get("title").toString());
-            descriptionView.setText(args.get("description").toString());
+            titleView.setText(args.get(Topic.TITLE).toString());
+            descriptionView.setText(args.get(Topic.DESCRIPTION).toString());
             if(url_image!= null && !url_image.isEmpty() ){
                 Picasso.with(getContext())
                         .load(url_image)

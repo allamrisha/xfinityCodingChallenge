@@ -92,7 +92,7 @@ public class Meta{
 
 	@SerializedName("status")
 	private String status;
-
+/*
 	public void setSrcUrl(Object srcUrl){
 		this.srcUrl = srcUrl;
 	}
@@ -139,7 +139,7 @@ public class Meta{
 
 	public Object getDevDate(){
 		return devDate;
-	}
+	}*/
 
 	public void setDescription(String description){
 		this.description = description;
@@ -149,7 +149,7 @@ public class Meta{
 		return description;
 	}
 
-	public void setUnsafe(int unsafe){
+	/*public void setUnsafe(int unsafe){
 		this.unsafe = unsafe;
 	}
 
@@ -212,7 +212,7 @@ public class Meta{
 	public String getProductionState(){
 		return productionState;
 	}
-
+*/
 	public void setId(String id){
 		this.id = id;
 	}
@@ -221,7 +221,7 @@ public class Meta{
 		return id;
 	}
 
-	public void setSrcId(int srcId){
+	/*public void setSrcId(int srcId){
 		this.srcId = srcId;
 	}
 
@@ -251,7 +251,7 @@ public class Meta{
 
 	public Object getAttribution(){
 		return attribution;
-	}
+	}*/
 
 	public void setName(String name){
 		this.name = name;
@@ -260,7 +260,7 @@ public class Meta{
 	public String getName(){
 		return name;
 	}
-
+/*
 	public void setProducer(Object producer){
 		this.producer = producer;
 	}
@@ -283,7 +283,7 @@ public class Meta{
 
 	public String getSignalFrom(){
 		return signalFrom;
-	}
+	}*/
 
 	public void setDeveloper(List<DeveloperItem> developer){
 		this.developer = developer;
@@ -293,7 +293,7 @@ public class Meta{
 		return developer;
 	}
 
-	public void setCreatedDate(Object createdDate){
+	/*public void setCreatedDate(Object createdDate){
 		this.createdDate = createdDate;
 	}
 
@@ -323,7 +323,7 @@ public class Meta{
 
 	public String getStatus(){
 		return status;
-	}
+	}*/
 
 	@Override
  	public String toString(){

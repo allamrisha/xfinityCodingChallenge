@@ -1,14 +1,11 @@
 package com.xfinity.model;
 
-/**
- * Created by rashmi on 1/31/2018.
- */
 
 public class Topic {
 
-    public static String TITLE = "title";
-    public static String DESCRIPTION = "description";
-    public static String IMAGE_URL = "img_url";
+    public static final String TITLE = "title";
+    public static final String DESCRIPTION = "description";
+    public static final String IMAGE_URL = "img_url";
 
     String title;
     String description;
@@ -32,6 +29,10 @@ public class Topic {
         return imageUrl;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -40,8 +41,5 @@ public class Topic {
         this.description = description;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
 }

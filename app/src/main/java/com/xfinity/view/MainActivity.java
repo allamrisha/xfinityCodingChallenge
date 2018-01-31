@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.xfinity.R;
 import com.xfinity.adapters.TopicsListAdapter;
+import com.xfinity.model.Topic;
 
 import static com.xfinity.util.Constants.DETAILS_FRAGMENT;
 import static com.xfinity.util.Constants.LIST_FRAGMENT;
@@ -71,9 +72,9 @@ public class MainActivity extends AppCompatActivity  implements TopicsListAdapte
         }else {
             DetailsFragment dynamicDetailsFragment = new DetailsFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("title",title);
-            bundle.putString("description",description);
-            bundle.putString("image_url",image);
+            bundle.putString(Topic.TITLE,title);
+            bundle.putString(Topic.DESCRIPTION,description);
+            bundle.putString(Topic.IMAGE_URL,image);
             dynamicDetailsFragment.setArguments(bundle);
             Log.i(TAG,bundle.toString());
             mFragmentManager.beginTransaction()
