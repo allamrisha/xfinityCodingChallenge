@@ -9,7 +9,7 @@ import com.android.volley.toolbox.Volley;
 import com.xfinity.util.ConnectivityReceiver;
 
 /**
- * Created by rashmi on 1/30/2018.
+ * Created by risha on 1/30/2018.
  */
 
 public class AppController extends Application {

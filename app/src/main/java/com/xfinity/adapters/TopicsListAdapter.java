@@ -17,8 +17,8 @@ import com.xfinity.model.RelatedTopicsItem;
 
 import java.util.List;
 
-import static com.xfinity.util.Constants.GRID_ITEM;
-import static com.xfinity.util.Constants.LIST_ITEM;
+import static com.xfinity.util.Constants.GRID;
+import static com.xfinity.util.Constants.LIST;
 
 /**
  * Created by risha on 1/30/2018.
@@ -27,7 +27,7 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
 
     private List<RelatedTopicsItem> mRelatedTopicsItemList;
     private Context mContext;
-    private boolean isSwitchView  =  true;
+    private boolean isToggleView =  true;
     private String title,description;
     private TopicsClickListener mTopicsClickListener;
 
@@ -65,7 +65,7 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        if(viewType == LIST_ITEM){
+        if(viewType == LIST){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
         }
         else {
@@ -76,10 +76,10 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
 
     @Override
     public int getItemViewType(int position) {
-        if(isSwitchView)
-            return LIST_ITEM;
+        if(isToggleView)
+            return LIST;
         else
-            return GRID_ITEM;
+            return GRID;
     }
 
 
@@ -98,8 +98,8 @@ public class TopicsListAdapter extends RecyclerView.Adapter<TopicsListAdapter.Cu
     }
 
     public boolean toggleItemViewType () {
-        isSwitchView  =  !isSwitchView;
-        return isSwitchView;
+        isToggleView =  !isToggleView;
+        return isToggleView;
     }
 
     private void getTitleAndDescription(RelatedTopicsItem relatedTopicsItem) {

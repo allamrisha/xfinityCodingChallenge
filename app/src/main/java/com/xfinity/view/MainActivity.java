@@ -47,11 +47,8 @@ public class MainActivity extends AppCompatActivity  implements TopicsListAdapte
         switch (id){
             case R.id.toggle_view:
                 TopicsListFragment topicsListFragment = ((TopicsListFragment)mFragmentManager.findFragmentByTag(LIST_FRAGMENT));
-                //boolean isSwitched =  mTopicsListAdapter.toggleItemViewType();
-                boolean isSwitched =  topicsListFragment.getListAdapter().toggleItemViewType();
-                //mRecyclerView.setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
-                topicsListFragment.getRecyclerView().setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
-                //mRecyclerView.setLayoutManager(isSwitched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
+                boolean switched =  topicsListFragment.getListAdapter().toggleItemViewType();
+                topicsListFragment.getRecyclerView().setLayoutManager(switched?new LinearLayoutManager(this):new GridLayoutManager(this,2));
                 topicsListFragment.getListAdapter().notifyDataSetChanged();
                 if (item.isChecked()) {
                     item.setIcon(getResources().getDrawable(R.drawable.ic_off_toggle));

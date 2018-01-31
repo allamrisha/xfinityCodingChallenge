@@ -29,13 +29,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.xfinity.util.Constants.NO_INTERNET;
 import static com.xfinity.util.Constants.SIMPSONS_URL;
 import static com.xfinity.util.Constants.SIMPSONS_VERSION_NAME;
 import static com.xfinity.util.Constants.WIRE_URL;
 import static com.xfinity.util.Constants.WIRE_VERSION_NAME;
 
 /**
- * Created by rashmi on 1/30/2018.
+ * Created by risha on 1/30/2018.
  */
 
 public class TopicsListFragment extends Fragment implements ConnectivityReceiver.ConnectivityReceiverListener {
@@ -111,7 +112,7 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
     private void showToast(boolean isConnected) {
         String message = "";
         if (!isConnected){
-            message  =  "Sorry! Not connected to internet";
+            message  = NO_INTERNET;
             Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
         }
     }
@@ -121,27 +122,6 @@ public class TopicsListFragment extends Fragment implements ConnectivityReceiver
         showToast(isConnected);
     }
 
-    /*private void loadWireData() {
-        // Checking if internet connection exists or not
-        checkConnection();
-        totalResponse = new JsonObjectRequest(WIRE_URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    parseJSON(response);
-                }
-                catch (Exception e) {
-                    System.out.print(e);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG,"Volley error response");
-            }
-        });
-    }
-*/
     private void loadData(String url) {
         // Checking if internet connection exists or not
         checkConnection();

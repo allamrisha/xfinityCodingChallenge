@@ -17,7 +17,7 @@ import static com.xfinity.util.Constants.DEFAULT_DESC;
 import static com.xfinity.util.Constants.DEFAULT_TITLE;
 
 /**
- * Created by rashmi on 1/31/2018.
+ * Created by risha on 1/31/2018.
  */
 
 public class DetailsFragment extends Fragment {
